@@ -1,0 +1,612 @@
+/* Leezen - Exclusive Yoga Center HTML5 Template */
+
+@media only screen and (max-width: 1360px){
+	.main-header .auto-container{
+		margin:0px;	
+	}
+	
+	.deal-of-day .side-title{
+		display:none;	
+	}
+}
+@media only screen and (max-width: 1140px){
+	
+	.main-header{
+		position:relative;
+		margin:0px !important;
+	}
+	.main-header.header-two {background: #323941;}
+	.main-slider.home-two {margin-top: 0;}
+	.yoga-experience.home-two .content-outer {background: none;}
+	.classes-gallery .classes-carousel.owl-theme .owl-controls .owl-nav [class*="owl-"] {position: relative;margin-left: 0;margin-right: 0;top:auto;}
+	.classes-gallery .classes-carousel.owl-theme .owl-controls .owl-nav .owl-next {margin-left: 20px;}
+	.page-title{
+		padding:80px 0px;	
+	}
+	
+	.main-menu .navigation > li{
+		margin:0px 7px;
+	}
+	
+	.default-gradient-section .image-layer,
+	.page-info .image-layer{
+		display:none;	
+	}
+	
+	.page-info{
+		padding:80px 0px;	
+	}
+	
+	.page-info h2{
+		font-size:26px;	
+	}
+	
+	.page-wrapper{
+		overflow:hidden;	
+	}
+	
+	.blog-fullwidth .styled-blog-post .content-box .info-box .post-title{
+		font-size:22px;	
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.main-menu .navigation > li > ul,
+	.main-menu .navigation > li > ul > li > ul{
+		display:block !important;
+		visibility:hidden;
+		opacity:0;
+	}
+}
+
+@media only screen and (max-width: 1023px){
+	
+	.main-header .main-box .logo-box {
+		position:relative;
+		left:0px;
+		top:0px;
+		right:0px;
+		bottom:0px;
+		width:200px;
+		margin:0px;
+		text-align:left;
+	}
+	
+	.main-header .main-box .outer-container{
+		padding-left:0px;	
+	}
+	
+	.main-header .nav-outer,
+	.nav-outer .main-menu{
+		display:none;
+	}
+	
+	.main-header .nav-toggler{
+		display:block;
+	}
+	
+	.fluid-section-one .video-column .video-box .image{
+		display:block;
+	}
+	
+	.fluid-section-one .video-column .video-box,
+	.fluid-section-one .video-column{
+		position:relative;
+		left:0px;
+		right:0px;
+		top:0px;
+		bottom:0px;
+		background:none;
+		width:100%;
+	}
+	
+	.fluid-section-one .column{
+		width:100%;
+		max-width:none;
+	}
+	
+	.fluid-section-one .content-column .content-outer{
+		width:100%;
+		max-width:none;
+	}
+	
+	.sec-title h2{
+		font-size:18px;	
+	}
+	
+	.gallery-single-post .info-column{
+		padding-left:15px;	
+	}
+	
+	.sidebar-page-container .blog-section{
+		padding-right:0px !important;	
+	}
+	
+	.page-info{
+		padding:80px 0px;	
+	}
+	
+	.page-info h2{
+		font-size:22px;	
+	}
+	
+	.yoga-experience .content-outer .image-column .image{
+		display:none;	
+	}
+	
+	.featured-shop-item{
+		padding:80px 0px;
+		background-image:none;	
+	}
+	
+	.deal-of-day .image-column{
+		display:none;	
+	}
+	
+	.default-filters-box .result-coumn h4{
+		text-align:center;	
+	}
+	
+	.default-filters-box .search-option,
+	.default-filters-box .view-options{
+		width:50%;
+		text-align:center;
+		border:none;
+		padding-left:0;
+		padding-right:0;
+		margin-bottom:15px;	
+	}
+	
+	.default-filters-box .search-option .form-group{
+		width:100%;
+	}
+	
+	.default-filters-box .select-option{
+		width:33.333%;
+		padding:3px 0px;
+		margin:0px 0px 10px;
+	}
+	
+	.shop-items-section .default-filters-box .select-option,
+	.shop-items-section .default-filters-box .view-options{
+		width:33.333%;
+	}
+	
+	.default-filters-box .option .sel-btn{
+		border:1px solid #d0d0d0;
+		margin:0px 0px 0px 10px;
+		padding:5px 0px;
+		border-radius:3px;
+		text-align:center;
+	}
+	
+	.default-filters-box .option .sel-list{
+		width:100%;
+		background:#ffffff;
+	}
+	
+}
+
+@media only screen and (max-width: 767px){
+	
+	.tp-caption {display: none !important;}
+	.main-header .header-top .top-right ul.info-nav{
+		float:none;
+		left:-10px;	
+	}
+	
+	.header-upper .logo-outer {
+		position:relative;
+		left:0px;
+		top:0px;
+		right:0px;
+		bottom:0px;
+		width:100%;
+		margin:0px;
+	}
+	
+	.default-portfolio-item.masonry-item.big-item,
+	.default-portfolio-item.masonry-item.small-item{
+		width:100%;	
+	}
+	
+	.main-header .header-top .top-right ul li,
+	.main-header .header-top .top-left ul li{
+		margin:0px 5px;	
+	}
+	
+	.what-we-do .left-column .feature-block .inner-box,
+	.what-we-do .right-column .feature-block .inner-box{
+		max-width:450px !important;
+		margin:0px auto !important;
+		text-align:center !important;
+		padding:0px !important;
+		float:none;	
+	}
+	
+	.what-we-do .left-column .feature-block .icon-box,
+	.what-we-do .right-column .feature-block .icon-box{
+		position:relative !important;
+		left:0px !important;
+		top:0px !important;
+		right:0px !important;
+		bottom:0px !important;
+		margin:0 auto 20px !important;
+	}
+	
+	.main-slider .tp-caption{
+		/*display:none !important;	*/
+	}
+	
+	.error-section .big-text{
+		font-size:120px;	
+	}
+	
+	.error-section h3,
+	.prod-info-section .content-column .title-box h2{
+		font-size:22px;	
+	}
+	
+	.post-style-one .inner-box .post-info .meta{
+		display:none;	
+	}
+	
+	.post-style-one .inner-box .post-info h3{
+		padding-top:15px;	
+	}
+	
+	.sidebar-page-container .about-author .inner-box{
+		padding-left:0px;	
+	}
+	
+	.sidebar-page-container .about-author .author-thumb{
+		position:relative;
+		margin-bottom:20px;	
+	}
+	
+	.yoga-experience .left-column .featured-icon-block .inner-box,
+	.yoga-experience .right-column .featured-icon-block .inner-box{
+		padding:0px;
+		text-align:center;	
+	}
+	
+	.yoga-experience .left-column .featured-icon-block .icon-box,
+	.yoga-experience .right-column .featured-icon-block .icon-box{
+		position:relative;
+		margin:0 auto 30px;
+		left:auto;
+		right:auto;
+		top:auto;	
+	}
+	
+	.yoga-experience .content-outer{
+		padding-bottom:0px;
+		background-image:none;	
+	}
+	
+	.yoga-experience{
+		padding-bottom:0px;	
+	}
+	
+	.list-view-column .inner-box{
+		padding-left:0px;	
+	}
+	
+	.list-view-column .image-box{
+		position:relative;
+		width:100%;
+		height:auto;
+		margin-bottom:20px;	
+	}
+	
+	.default-filters-box .option{
+		margin:0px 0px 15px;	
+	}
+	
+	.default-event-post .content-box .info-box .event-title,
+	.single-class .post-container .title-info h2,
+	.blog-list-view .styled-blog-post .content-box .info-box .post-title,
+	.blog-grid-view .styled-blog-post .content-box .info-box .post-title{
+		font-size:18px;	
+	}
+	
+	.event-details .posts-nav:before{
+		display:none;	
+	}
+	
+	.event-details .posts-nav .prev-post,
+	.event-details .posts-nav .next-post{
+		width:100%;
+		text-align:center;
+		padding:10px 0px;
+	}
+	
+	.blog-details .posts-nav .prev-post,
+	.blog-details .posts-nav .next-post{
+		width:100%;
+		text-align:center;
+		padding:30px 0px;
+	}
+	
+	.trainer-classes-info .video-box{
+		max-width:none;	
+	}
+	
+	.trainer-info-section .content-outer .trainer-image{
+		position:relative;
+		left:0px;
+		top:0px;
+		bottom:0px;
+		margin-bottom:20px;	
+	}
+	
+	.trainer-info-section .content-outer .trainer-image img{
+		display:block;
+		max-width:100%;	
+	}
+	
+	.product-list-style .inner-box .image-box{
+		margin-bottom:20px;	
+	}
+	
+	.prod-info-section .carousel-outer{
+		margin-bottom:30px;	
+	}
+	
+	.cart-column .other-options .coupon-column{
+		margin-bottom:20px;	
+	}
+	
+	.cart-column .other-options .continue-column{
+		width:100%;
+	}
+	
+	.blog-fullwidth .styled-blog-post .image-box{
+		margin-bottom:25px;
+	}
+	
+	.styled-blog-post .pull-right .content-box,
+	.styled-blog-post .pull-left .content-box{
+		padding:0px;	
+	}
+	
+	.who-we-are .content-column .sec-title{
+		margin-bottom:40px;	
+	}
+}
+
+@media only screen and (max-width: 599px){
+	
+	.sidebar-page-container .comments-area .reply-btn{
+		position:relative !important;
+		top:5px !important;
+		right:0px;	
+	}
+	
+	.blog-news-section .post-share-options .pull-right.text-left{
+		float:left !important;
+		padding-top:10px !important;
+		width:100%;
+	}
+	
+	.tabbed-events .event-btn .event-date{
+		position:relative;
+		left:0px;
+		top:0px;
+		width:100%;
+		padding:15px 10px;	
+	}
+	
+	.tabbed-events .event-btn .event-date .day{
+		display:inline-block;
+		padding-right:10px;	
+	}
+	
+	.tabbed-events .event-btn{
+		padding-right:0px;	
+	}
+	
+	.tabbed-events .event-btn:after{
+		display:none;	
+	}
+	
+	.tabbed-events .event-btn.active{
+		border:4px solid #0060b2;	
+	}
+	
+	.pricing-column .inner-box .priceing-header .price{
+		font-size:32px;	
+	}
+	
+	.prod-tabs .reviews-container .review-box{
+		padding-left:0px;	
+	}
+	
+	.prod-tabs .reviews-container .rev-thumb{
+		position:relative;
+		left:0px;
+		top:0px;
+		margin-bottom:20px;
+	}
+	
+	.prod-tabs .tab-btns .tab-btn{
+		display:block;
+		margin:0px 0px 10px;
+		text-align:center;
+		font-size:16px;	
+	}
+	
+	.form-box.bordered-form{
+		padding:20px 15px;	
+	}
+	
+	.sidebar-page-container .comments-area .reply-comment{
+		margin-left:0px;	
+	}
+	
+	.quote-section .quote-text,
+	.quote-section .quote-author{
+		text-align:center;	
+	}
+	
+	.event-form-box .form-group{
+		margin:0px 0px 20px;
+		display:block;
+		width:100%;	
+	}
+	
+	.sec-title .desc-text{
+		font-size:15px;	
+	}
+	
+	.default-filters-box .search-option{
+		width:100%;
+		padding:0px;
+		margin:0px 0px 15px;	
+	}
+	
+	.default-filters-box .search-option .form-group{
+		width:100%;	
+	}
+	
+	.event-details .content-box .text-content blockquote,
+	.blog-details .styled-blog-post .content-box .text-content blockquote{
+		margin-left:0px;	
+	}
+	
+	.cart-column .other-options .coupon-column .form-group input{
+		margin-bottom:20px;	
+	}
+	
+	.page-info{
+		padding:50px 0px;	
+	}
+	
+	.blog-fullwidth .styled-blog-post .content-box .info-box .post-title{
+		font-size:18px;	
+	}
+	
+	.default-filters-box .option{
+		width:100%;
+	}
+	
+	.default-filters-box .search-option{
+		padding:0px;
+		border:none;	
+	}
+	
+	.default-filters-box .view-options{
+		text-align:center;
+		border:none;	
+	}
+	
+	.default-filters-box .option .sel-btn{
+		margin:0px;
+	}
+	
+	.default-filters-box .option .sel-list{
+		width:100%;
+		background:#ffffff;
+	}
+	
+	.shop-items-section .default-filters-box .select-option,
+	.shop-items-section .default-filters-box .view-options{
+		width:100%;
+	}
+}
+
+@media only screen and (max-width: 499px) {
+	
+	.main-header .main-box .logo-box .logo img{
+		max-width:70%;	
+	}
+	
+	.main-header .cart-btn-outer{
+		width:80px;	
+	}
+	
+	.main-header .cart-btn-outer .icon{
+		margin:0px;
+		border:none;	
+	}
+	
+	.main-header .cart-btn-outer .amount{
+		display:none;	
+	}
+	
+	.pricing-column .inner-box .pricing-content{
+		padding:20px 15px;	
+	}
+	
+	.page-info .pull-left,
+	.page-info .pull-right{
+		width:100%;
+		padding:10px 0px;	
+	}
+	
+	.prod-tabs .tabs-container .tab{
+		padding:20px 15px;
+	}
+	
+	.post-style-one .inner-box .post-info h3{
+		padding-top:0px;	
+	}
+	
+	.sidebar-page-container .comments-area .comment{
+		padding-left:0px;	
+	}
+	
+	.sidebar-page-container .comments-area .comment-box .author-thumb{
+		position:relative;
+		left:0px;
+		top:0px;
+		margin-bottom:20px;	
+	}
+	
+	.default-blog-post .lower-content{
+		padding:20px 0px 20px;	
+	}
+	
+	.default-blog-post .lower-content .date{
+		position:relative;
+		top:0px;
+		margin-bottom:20px;	
+	}
+	
+	.main-footer .newsletter-section .fields-outer .form-group{
+		display:block;
+		width:100%;
+		padding:0px;
+		margin-bottom:15px;	
+	}
+	
+	.main-footer .newsletter-section .form-group input[type="submit"], .main-footer .newsletter-section button{
+		width:100%;	
+	}
+	
+	.trainer-info-section .content-outer .content-list .list li .title,
+	.trainer-info-section .content-outer .content-list .list li .text{
+		width:100%;
+		text-align:left;	
+	}
+	
+	.trainer-info-section .content-outer .top-right-link{
+		top:30px;
+	}
+	
+	.trainer-info-section .content-outer{
+		padding:40px 20px 30px;	
+	}
+	
+	.trainer-classes-info blockquote{
+		font-size:30px;	
+	}
+	
+	.fluid-section-one .content-column .content-box{
+		padding:50px 30px;	
+	}
+	
+	.fluid-section-one .content-column .gradient-text{
+		font-size:60px;	
+	}
+}

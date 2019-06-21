@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+    
+    	<form name="joinVO">
+    		<field property="loginId" depends="required, minlength, maxlength, idValid">
+    			<arg0 key="joinVO.loginId"/>
+    			<arg1 key="${var:minlength}" name="minlength"/>
+    			<arg1 key="${var:maxlength}" name="maxlength"/>
+    			<var>
+    				<var-name>minlength</var-name>
+    				<var-value>8</var-value>
+    			</var>
+    			<var>
+    				<var-name>maxlength</var-name>
+    				<var-value>12</var-value>
+    			</var>
+    		</field>
+    		<field property="mbrNm" depends="required">
+    			<arg0 key="joinVO.mbrNm"/>
+    		</field>
+    		<field property="pwd" depends="required, minlength, maxlength, pwValid">
+    			<arg0 key="joinVO.pwd"/>
+    			<arg1 key="${var:minlength}" name="minlength"/>
+    			<arg1 key="${var:maxlength}" name="maxlength"/>
+    			<var>
+    				<var-name>minlength</var-name>
+    				<var-value>8</var-value>
+    			</var>
+    			<var>
+    				<var-name>maxlength</var-name>
+    				<var-value>15</var-value>
+    			</var>
+    		</field>
+    		<field property="pwdConfirm" depends="required, pwConfirmChk">
+    			<arg0 key="joinVO.pwdConfirm"/>
+    		</field>
+    		<field property="cpNo" depends="required, phoneValid">
+    			<arg0 key="joinVO.cpNo"/>
+    		</field>
+    		<field property="zipCode" depends="required">
+    			<arg0 key="joinVO.zipCode"/>
+    		</field>
+    		<field property="bsAddr" depends="required">
+    			<arg0 key="joinVO.bsAddr"/>
+    		</field>
+    		<field property="dtAddr" depends="required">
+    			<arg0 key="joinVO.dtAddr"/>
+    		</field>
+    		<field property="email" depends="required, email">
+    			<arg0 key="joinVO.email"/>
+    		</field>
+    		<field property="smsRcpYn" depends="required">
+    			<arg0 key="joinVO.smsRcpYn"/>
+    		</field>
+    		<field property="emailRcpYn" depends="required">
+    			<arg0 key="joinVO.emailRcpYn"/>
+    		</field>
+    	</form>
+    	
+        <form name="sampleVO">
+        	<field property="name" depends="required">
+        		<arg0 key="title.sample.name" />
+			</field>
+			<field property="description" depends="required">
+                <arg0 key="title.sample.description" />
+            </field>
+        	<field property="regUser" depends="required">
+        		<arg0 key="title.sample.regUser" />
+			</field>
+        </form>
+    </formset>
+
+</form-validation>

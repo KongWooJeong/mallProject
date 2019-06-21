@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.onlineDt.service.impl.OnlineDtMapper">
+
+	<select id="selectVdoList" resultType="egovMap">
+		SELECT V.VDO_CD
+		     , V.VDO_NM
+			 , V.VDO_TR
+			 , V.VDO_URL
+			 , V.SMR
+			 , C.CAT_NM 
+			 , P.VDO_PRC			 
+			 ,(SELECT CAT_NM
+				 FROM T_VDO_CAT
+				WHERE CAT_CD = (SELECT M_CAT_CD
+				 				  FROM T_VDO
+				 				 WHERE VDO_CD = #{vdoCd} )) AS TITLE
+		  FROM T_VDO V
+		  JOIN T_VDO_CAT C ON V.S_CAT_CD = C.CAT_CD
+		  JOIN T_VDO_IMG I ON V.VDO_CD = I.VDO_CD
+		  JOIN T_VDO_PRC P ON V.VDO_CD = P.VDO_CD
+		 WHERE C.USE_YN = 'Y'
+		   AND V.VDO_CD = #{vdoCd}
+	</select>
+	
+	<select id="checkVideo" parameterType="egovMap" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_ORD_HIS
+		 WHERE MBR_NO = #{mbrNo}
+		   AND VDO_CD = #{vdoCd}
+	</select>
+	
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.online.service.impl.OnlineMapper">
+
+	<sql id="onlineList">
+		SELECT CAT_CD
+			 , CAT_NM
+			 , UPPR_CAT_CD
+			 , CAT_LV
+			 , SORT_SEQ
+			 , CNNT_URL
+		FROM T_VDO_CAT
+		WHERE USE_YN = 'Y'
+		ORDER BY SORT_SEQ
+	</sql>
+	
+	<sql id="onlineSearchList">
+	  <where>
+	  	<if test=' (catLv != null and catLv == "1") and (catCd != null and catCd != "") '>
+	  		AND L_CAT_CD = #{catCd}
+	  	</if>
+	  
+	  	<if test=' (catLv != null and catLv == "2") and (catCd != null and catCd != "") '>
+	  		AND M_CAT_CD = #{catCd}
+	  	</if>
+	  
+	  	<if test=' (catLv != null and catLv == "3") and (catCd != null and catCd != "") '>
+	  		AND S_CAT_CD = #{catCd}
+	  	</if>		  
+	  </where>
+	</sql>
+	
+	<sql id="vdoList">
+		SELECT V.VDO_CD
+		     , V.VDO_NM
+		     , V.VDO_TR
+		     , V.VDO_URL
+		     , V.L_CAT_CD
+		     , V.M_CAT_CD
+		     , V.S_CAT_CD
+		     , V.REG_DT
+		     , I.VDO_IMG_URL
+		     , P.VDO_PRC
+		  FROM T_VDO V
+		  JOIN T_VDO_IMG I ON V.VDO_CD = I.VDO_CD
+		  JOIN T_VDO_PRC P ON V.VDO_CD = P.VDO_CD	  
+	</sql>	
+	
+	<select id="selectOnlineCtgrList" resultType="egovMap">
+		SELECT CAT_CD
+		     , CAT_NM
+		     , UPPR_CAT_CD
+		     , CAT_LV
+		  FROM T_VDO_CAT
+		 WHERE USE_YN = 'Y'
+	</select>
+	
+	<select id="selectTotalCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM (<include refid="vdoList"/>)T
+		  <include refid="onlineSearchList"/>
+	</select>
+	
+	<select id="selectVdoList" parameterType="map" resultType="egovMap">
+		SELECT T.*
+		  FROM (<include refid="vdoList"/>)T
+		  <include refid="onlineSearchList"/>
+	  ORDER BY T.REG_DT DESC, T.VDO_CD DESC
+	     LIMIT #{lineSize} OFFSET #{offset}
+	</select>
+	
+	<select id="selectOnlineRandomList" resultType="egovMap">
+		SELECT T.*
+		  FROM (<include refid="vdoList"/>)T
+	  ORDER BY RAND()
+	     LIMIT 5; 
+	</select>
+	
+</mapper>

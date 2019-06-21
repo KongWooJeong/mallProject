@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.shop.service.impl.ShopMapper">
+
+	<sql id="sqlGoodsListSearch">
+	
+		<where>
+		  		BSC_IMG_YN = 'Y' AND USE_YN = 'Y' AND DEL_YN = 'N'
+		  	<if test=' (catLv != null and catLv == "1") and (catCd != null and catCd != "") '>
+		  		AND L_CAT_CD = #{catCd}
+		  	</if>
+		  
+		  	<if test=' (catLv != null and catLv == "2") and (catCd != null and catCd != "") '>
+		  		AND M_CAT_CD = #{catCd}
+		  	</if>
+		  
+		  	<if test=' (catLv != null and catLv == "3") and (catCd != null and catCd != "") '>
+		  		AND S_CAT_CD = #{catCd}
+	  	</if>		  
+  		</where>
+		
+	</sql>
+
+	<select id="selectMenuList" resultType="egovMap">
+		SELECT CAT_CD
+			 , CAT_NM
+			 , UPPR_CAT_CD
+			 , CAT_LV
+			 , SORT_SEQ
+			 , CNNT_URL
+		  FROM T_GD_CAT
+		 WHERE USE_YN = 'Y'
+	  ORDER BY CAT_CD
+	</select>
+	
+	<select id="selectRandomList" resultType="egovMap">
+		SELECT 
+			G.GD_CD
+			, G.GD_NM
+			, G.REG_DT
+			, F.FILE_PATH
+			, F.PHS_FILE_NM
+			, P.GD_PRC
+		FROM T_GD G
+			JOIN T_GD_IMG I ON G.GD_CD = I.GD_CD
+			JOIN T_ATTC_FILE F ON F.FILE_NO = I.GD_IMG_ATT_FILE
+			JOIN T_GD_PRC P ON P.GD_CD = G.GD_CD
+		WHERE I.BSC_IMG_YN = 'Y'
+	  	ORDER BY RAND()
+		LIMIT 3
+	</select>
+	
+	<select id="selectGoodsCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM T_GD G
+		JOIN T_GD_IMG I ON G.GD_CD = I.GD_CD
+		JOIN T_ATTC_FILE F ON F.FILE_NO = I.GD_IMG_ATT_FILE
+		JOIN T_GD_PRC P ON P.GD_CD = G.GD_CD
+		<include refid="sqlGoodsListSearch"></include>
+	</select>
+	
+	<select id="selectGoodsList" parameterType="map" resultType="egovMap">
+		SELECT 
+			G.GD_CD
+			, G.GD_NM
+			, G.REG_DT
+			, F.FILE_PATH
+			, F.PHS_FILE_NM
+			, P.GD_PRC
+		FROM T_GD G
+			JOIN T_GD_IMG I ON G.GD_CD = I.GD_CD
+			JOIN T_ATTC_FILE F ON F.FILE_NO = I.GD_IMG_ATT_FILE
+			JOIN T_GD_PRC P ON P.GD_CD = G.GD_CD
+
+		<include refid="sqlGoodsListSearch"></include>
+		
+		ORDER BY G.REG_DT DESC, G.GD_CD DESC
+		LIMIT #{lineSize} OFFSET #{offset}
+	</select>
+	
+	
+</mapper>

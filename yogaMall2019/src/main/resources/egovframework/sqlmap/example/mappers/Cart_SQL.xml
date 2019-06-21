@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.cart.service.impl.CartMapper">
+
+	<select id="cntCartList" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_CART
+		 WHERE MBR_NO = #{mbrNo}
+		 <if test="vdoCd != '' and vdoCd != null">
+		 	AND VDO_CD = #{vdoCd}
+		 </if>
+		 <if test="gdCd != '' and gdCd != null">
+		 	AND GD_CD = #{gdCd}
+		 </if>		 
+	</select>
+	
+	<insert id="insertCart" parameterType="map">
+		INSERT INTO T_CART
+			  ( MBR_NO
+			   <if test="vdoCd != '' and vdoCd != null">
+			  , VDO_CD
+			  , TYPE		  
+			  , AMT
+			  , TOT_PRC)
+		VALUES
+			  ( #{mbrNo}
+			  , #{vdoCd}
+			  , 'V'
+			  , 1
+			  , (SELECT VDO_PRC FROM T_VDO_PRC WHERE VDO_CD = #{vdoCd}))
+			  </if>
+			  <if test="gdCd != '' and gdCd != null">
+			  , GD_CD
+			  , TYPE	  
+			  , AMT
+			  , TOT_PRC)
+		VALUES
+			  ( #{mbrNo}
+			  , #{gdCd}
+			  , 'G'
+			  , #{amt}
+			  , ( #{amt} * (SELECT GD_PRC FROM T_GD_PRC WHERE GD_CD = #{gdCd})))
+			  </if>
+	</insert>
+	
+	<select id="selectCartList" resultType="egovMap">
+		SELECT C.GD_CD
+		     , C.VDO_CD
+		     , C.TYPE
+		     , C.AMT
+		     , C.TOT_PRC		     
+		     , V.VDO_NM 
+		     , G.GD_NM
+			 , VI.VDO_IMG_URL
+			 , VP.VDO_PRC
+			 , GP.GD_PRC
+			 , CONCAT('images/shop/img/',F.FILE_PATH, '/', F.PHS_FILE_NM) GD_IMG_URL
+		  FROM T_CART C
+	 LEFT JOIN T_VDO V ON C.VDO_CD = V.VDO_CD
+	 LEFT JOIN T_VDO_IMG VI ON C.VDO_CD = VI.VDO_CD  
+	 LEFT JOIN T_VDO_PRC VP ON C.VDO_CD = VP.VDO_CD
+	 LEFT JOIN T_GD G ON C.GD_CD = G.GD_CD
+	 LEFT JOIN T_GD_IMG GI ON C.GD_CD = GI.GD_CD AND GI.BSC_IMG_YN = 'Y'
+	 LEFT JOIN T_GD_PRC GP ON C.GD_CD = GP.GD_CD
+	 LEFT JOIN T_ATTC_FILE F ON GI.GD_IMG_ATT_FILE = F.FILE_NO	
+	     WHERE C.MBR_NO = #{_parameter}	
+	</select>	
+	
+	<update id="updateCart"  parameterType="map">
+		UPDATE T_CART
+		   SET AMT 		= AMT + 1
+		     , TOT_PRC 	= (TOT_PRC / (AMT - 1)) * AMT 
+		 WHERE MBR_NO 	= #{mbrNo}
+		   AND GD_CD 	= #{gdCd}
+	</update>
+	
+	<delete id="deleteCart">
+		DELETE
+		  FROM T_CART
+		 WHERE MBR_NO = #{mbrNo}
+		 <if test="vdoCd != '' and vdoCd != null">
+		 	AND VDO_CD = #{vdoCd}
+		 </if>
+		 <if test="gdCd != '' and gdCd != null">
+		 	AND GD_CD = #{gdCd}
+		 </if>		 	
+	</delete>
+	
+	<update id="modify" parameterType="hashmap">
+		UPDATE T_CART
+		   SET AMT = CASE
+	   		<foreach collection="shop" index="key" item="value">
+	   			WHEN GD_CD = #{key} THEN #{value}
+	   		</foreach>
+		   END,
+		   	TOT_PRC = CASE
+		   	<foreach collection="shop" index="key" item="value">
+	   			WHEN GD_CD = #{key} THEN (AMT * (SELECT GD_PRC FROM T_GD_PRC WHERE GD_CD = #{key}))
+	   		</foreach>
+		   END
+		 WHERE MBR_NO = #{mbrNo}
+		   AND GD_CD IN
+		   	<foreach collection="shop" open="(" close=")" separator="," index="key" item="value">
+		   		#{key}
+		   	</foreach>
+	</update>
+	
+	
+</mapper>

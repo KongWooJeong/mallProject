@@ -1,0 +1,202 @@
+@charset "UTF-8";
+/*
+* 샘플페이지만 적용되는 CSS
+*/
+.sampleMVC_wrap {margin: auto; width: 800px;}
+.sampleMVC_wrap table {background-color: transparent}
+.sampleMVC_wrap th {text-align: center}
+.sampleMVC_wrap td {text-align: center}
+.sampleMVC_wrap .cf:after{display: block; content: ''; clear: both;}
+
+.sampleMVC_wrap .header{border-bottom: 1px solid #000;}
+.sampleMVC_wrap .header h1{float: left; padding: 20px;}
+.sampleMVC_wrap .header .nav{float: right; padding-top: 20px;}
+.sampleMVC_wrap .header .nav li{float: left; margin-right: 20px;}
+.sampleMVC_wrap .header .nav li a{}
+
+.sampleMVC_wrap .content{}
+.sampleMVC_wrap .content h2{padding: 30px 0; font-size: 30px; text-align: center;}
+.sampleMVC_wrap .content .paging{padding: 20px 0; text-align: center;}
+.sampleMVC_wrap .content .paging ul{display: inline-block;}
+.sampleMVC_wrap .content .paging li:first-child{margin-left: 0;}
+.sampleMVC_wrap .content .paging li{float: left; margin-left: 5px; padding: 4px 8px; border: 1px solid #d5d5d5;}
+.sampleMVC_wrap .content .paging li a{color: #333;}
+
+/*글쓰기 페이지*/
+.sampleMVC_wrap .content .label_sec label{display: block;}
+.sampleMVC_wrap .content .label_sec input{width: 100%; padding: 5px 0;}
+.sampleMVC_wrap .content .label_sec input[readonly]{background-color: #dcdcdc;}
+.sampleMVC_wrap .content .label_sec textarea{width: 100%; height: 300px; box-sizing: border-box;}
+.sampleMVC_wrap .content .label_sec textarea[readonly]{background-color: #dcdcdc;}
+.sampleMVC_wrap .content .btn_sec{padding: 15px 0; text-align: right;}
+.sampleMVC_wrap .content .btn_sec .btn_reg{padding: 10px;}
+.sampleMVC_wrap .content .btn_sec .btn_mdf{}
+.sampleMVC_wrap .content .btn_sec .btn_rmv{}
+.sampleMVC_wrap .content .btn_sec .btn_lst{}
+
+.sampleMVC_wrap .footer{padding: 30px 0; border-top: 1px solid #000;}
+
+
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*!
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=9f8a944e5f549c0aad7293850ee18822)
+ * Config saved to config.json and https://gist.github.com/9f8a944e5f549c0aad7293850ee18822
+ */ /*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+.sampleMVC_wrap .table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 18px
+}
+/*
+.sampleMVC_wrap .table>thead>tr>th, .sampleMVC_wrap .table>tbody>tr>th, .sampleMVC_wrap .table>tfoot>tr>th, .sampleMVC_wrap .table>thead>tr>td,
+	.sampleMVC_wrap .table>tbody>tr>td, .sampleMVC_wrap .table>tfoot>tr>td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+	border-top: 1px solid #ddd
+}
+
+.sampleMVC_wrap .table>thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #ddd
+}
+
+.sampleMVC_wrap .table>caption+thead>tr:first-child>th, .sampleMVC_wrap .table>colgroup+thead>tr:first-child>th,
+	.sampleMVC_wrap .table>thead:first-child>tr:first-child>th, .sampleMVC_wrap .table>caption+thead>tr:first-child>td,
+	.sampleMVC_wrap .table>colgroup+thead>tr:first-child>td, .sampleMVC_wrap .table>thead:first-child>tr:first-child>td
+	{
+	border-top: 0
+}
+
+.sampleMVC_wrap .table>tbody+tbody {
+	border-top: 2px solid #ddd
+}
+
+.sampleMVC_wrap .table .sampleMVC_wrap .table {
+	background-color: #fff
+}
+
+.sampleMVC_wrap .table-condensed>thead>tr>th, .sampleMVC_wrap .table-condensed>tbody>tr>th,
+	.sampleMVC_wrap .table-condensed>tfoot>tr>th, .sampleMVC_wrap .table-condensed>thead>tr>td,
+	.sampleMVC_wrap .table-condensed>tbody>tr>td, .sampleMVC_wrap .table-condensed>tfoot>tr>td {
+	padding: 5px
+}
+
+.sampleMVC_wrap .table-bordered {
+	border: 1px solid #ddd
+}
+
+.sampleMVC_wrap .table-bordered>thead>tr>th, .sampleMVC_wrap .table-bordered>tbody>tr>th,
+	.sampleMVC_wrap .table-bordered>tfoot>tr>th, .sampleMVC_wrap .table-bordered>thead>tr>td,
+	.sampleMVC_wrap .table-bordered>tbody>tr>td, .sampleMVC_wrap .table-bordered>tfoot>tr>td {
+	border: 1px solid #ddd
+}
+
+.sampleMVC_wrap .table-bordered>thead>tr>th, .sampleMVC_wrap .table-bordered>thead>tr>td {
+	border-bottom-width: 2px
+}
+
+.sampleMVC_wrap .table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #f9f9f9
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr:hover {
+	background-color: #f5f5f5
+}
+
+table col[class*="col-"] {
+	position: static;
+	float: none;
+	display: table-column
+}
+
+table td[class*="col-"], table th[class*="col-"] {
+	position: static;
+	float: none;
+	display: table-cell
+}
+
+.sampleMVC_wrap .table>thead>tr>td.active, .sampleMVC_wrap .table>tbody>tr>td.active, .sampleMVC_wrap .table>tfoot>tr>td.active,
+	.sampleMVC_wrap .table>thead>tr>th.active, .sampleMVC_wrap .table>tbody>tr>th.active, .sampleMVC_wrap .table>tfoot>tr>th.active,
+	.sampleMVC_wrap .table>thead>tr.active>td, .sampleMVC_wrap .table>tbody>tr.active>td, .sampleMVC_wrap .table>tfoot>tr.active>td,
+	.sampleMVC_wrap .table>thead>tr.active>th, .sampleMVC_wrap .table>tbody>tr.active>th, .sampleMVC_wrap .table>tfoot>tr.active>th
+	{
+	background-color: #f5f5f5
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr>td.active:hover, .sampleMVC_wrap .table-hover>tbody>tr>th.active:hover,
+	.sampleMVC_wrap .table-hover>tbody>tr.active:hover>td, .sampleMVC_wrap .table-hover>tbody>tr:hover>.active,
+	.sampleMVC_wrap .table-hover>tbody>tr.active:hover>th {
+	background-color: #e8e8e8
+}
+
+.sampleMVC_wrap .table>thead>tr>td.success, .sampleMVC_wrap .table>tbody>tr>td.success, .sampleMVC_wrap .table>tfoot>tr>td.success,
+	.sampleMVC_wrap .table>thead>tr>th.success, .sampleMVC_wrap .table>tbody>tr>th.success, .sampleMVC_wrap .table>tfoot>tr>th.success,
+	.sampleMVC_wrap .table>thead>tr.success>td, .sampleMVC_wrap .table>tbody>tr.success>td, .sampleMVC_wrap .table>tfoot>tr.success>td,
+	.sampleMVC_wrap .table>thead>tr.success>th, .sampleMVC_wrap .table>tbody>tr.success>th, .sampleMVC_wrap .table>tfoot>tr.success>th
+	{
+	background-color: #dff0d8
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr>td.success:hover, .sampleMVC_wrap .table-hover>tbody>tr>th.success:hover,
+	.sampleMVC_wrap .table-hover>tbody>tr.success:hover>td, .sampleMVC_wrap .table-hover>tbody>tr:hover>.success,
+	.sampleMVC_wrap .table-hover>tbody>tr.success:hover>th {
+	background-color: #d0e9c6
+}
+
+.sampleMVC_wrap .table>thead>tr>td.info, .sampleMVC_wrap .table>tbody>tr>td.info, .sampleMVC_wrap .table>tfoot>tr>td.info,
+	.sampleMVC_wrap .table>thead>tr>th.info, .sampleMVC_wrap .table>tbody>tr>th.info, .sampleMVC_wrap .table>tfoot>tr>th.info,
+	.sampleMVC_wrap .table>thead>tr.info>td, .sampleMVC_wrap .table>tbody>tr.info>td, .sampleMVC_wrap .table>tfoot>tr.info>td,
+	.sampleMVC_wrap .table>thead>tr.info>th, .sampleMVC_wrap .table>tbody>tr.info>th, .sampleMVC_wrap .table>tfoot>tr.info>th
+	{
+	background-color: #d9edf7
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr>td.info:hover, .sampleMVC_wrap .table-hover>tbody>tr>th.info:hover,
+	.sampleMVC_wrap .table-hover>tbody>tr.info:hover>td, .sampleMVC_wrap .table-hover>tbody>tr:hover>.info,
+	.sampleMVC_wrap .table-hover>tbody>tr.info:hover>th {
+	background-color: #c4e3f3
+}
+
+.sampleMVC_wrap .table>thead>tr>td.warning, .sampleMVC_wrap .table>tbody>tr>td.warning, .sampleMVC_wrap .table>tfoot>tr>td.warning,
+	.sampleMVC_wrap .table>thead>tr>th.warning, .sampleMVC_wrap .table>tbody>tr>th.warning, .sampleMVC_wrap .table>tfoot>tr>th.warning,
+	.sampleMVC_wrap .table>thead>tr.warning>td, .sampleMVC_wrap .table>tbody>tr.warning>td, .sampleMVC_wrap .table>tfoot>tr.warning>td,
+	.sampleMVC_wrap .table>thead>tr.warning>th, .sampleMVC_wrap .table>tbody>tr.warning>th, .sampleMVC_wrap .table>tfoot>tr.warning>th
+	{
+	background-color: #fcf8e3
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr>td.warning:hover, .sampleMVC_wrap .table-hover>tbody>tr>th.warning:hover,
+	.sampleMVC_wrap .table-hover>tbody>tr.warning:hover>td, .sampleMVC_wrap .table-hover>tbody>tr:hover>.warning,
+	.sampleMVC_wrap .table-hover>tbody>tr.warning:hover>th {
+	background-color: #faf2cc
+}
+
+.sampleMVC_wrap .table>thead>tr>td.danger, .sampleMVC_wrap .table>tbody>tr>td.danger, .sampleMVC_wrap .table>tfoot>tr>td.danger,
+	.sampleMVC_wrap .table>thead>tr>th.danger, .sampleMVC_wrap .table>tbody>tr>th.danger, .sampleMVC_wrap .table>tfoot>tr>th.danger,
+	.sampleMVC_wrap .table>thead>tr.danger>td, .sampleMVC_wrap .table>tbody>tr.danger>td, .sampleMVC_wrap .table>tfoot>tr.danger>td,
+	.sampleMVC_wrap .table>thead>tr.danger>th, .sampleMVC_wrap .table>tbody>tr.danger>th, .sampleMVC_wrap .table>tfoot>tr.danger>th
+	{
+	background-color: #f2dede
+}
+
+.sampleMVC_wrap .table-hover>tbody>tr>td.danger:hover, .sampleMVC_wrap .table-hover>tbody>tr>th.danger:hover,
+	.sampleMVC_wrap .table-hover>tbody>tr.danger:hover>td, .sampleMVC_wrap .table-hover>tbody>tr:hover>.danger,
+	.sampleMVC_wrap .table-hover>tbody>tr.danger:hover>th {
+	background-color: #ebcccc
+}
+
+.sampleMVC_wrap .table-responsive {
+	overflow-x: auto;
+	min-height: 0.01%
+}

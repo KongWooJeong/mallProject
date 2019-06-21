@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.login.service.impl.LoginMapper">
+	
+	<select id="selectWthdMbrCnt" parameterType="map" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM T_MBR_WTHD
+		 WHERE LOGIN_ID = #{id}
+	</select>		
+		
+	<select id="selectDormInfo" parameterType="map" resultType="egovMap">
+		SELECT MBR_NO
+		     , DORM_dE
+		     , PWD
+		  FROM T_MBR_DORM
+		 WHERE LOGIN_ID = #{id} 
+	</select>
+	
+	<select id="selectMbrInfo" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT LOGIN_FAIL_CNT
+				 , CASE
+						WHEN now() <= DATE_ADD(LOGIN_FAIL_DT, INTERVAL 30 MINUTE)
+						AND LOGIN_FAIL_CNT >= 5
+						THEN 'N'
+						ELSE 'Y'
+				   END as IS_LOGIN_POSSIBLE
+				 , CASE
+						WHEN now() >= DATE_ADD(TMP_PWD_ISSU_DT, INTERVAL 1 DAY)						
+						THEN 'N'
+						ELSE 'Y'
+				   END as TEMP_PWD_USE_YN
+		]]>		    
+			     , MBR_NO
+				<if test="encPwd != null and encPwd != '' ">
+			    	 , LOGIN_ID
+				     , MBR_NM
+				     , MBR_GRD_CD
+				     , CP_NO
+				     , EMAIL
+				     , ZIPCODE
+				     , ROAD_NM_BSC_ADDR
+				     , ROAD_NM_DTL_ADDR	
+			    </if>				
+			  FROM T_MBR
+			 WHERE LOGIN_ID = #{id}	
+			 	<if test="encPwd != null and encPwd != '' ">
+			  		 AND PWD		= #{encPwd}	
+				</if>
+		
+	</select>
+	
+	<update id="updateFailProc" parameterType="map">
+		UPDATE T_MBR
+		   SET 
+		   <choose>
+		   		<when test="proc == 'fainCntInc' ">
+		   			LOGIN_FAIL_CNT 	= LOGIN_FAIL_CNT + 1
+		   		  , LOGIN_FAIL_DT	= now()
+		   		</when>
+		   		<otherwise>
+		   			LOGIN_FAIL_CNT 	= 0
+		    	  , LOGIN_FAIL_DT	= NULL
+		   		</otherwise>
+		   </choose>		   	 
+		     , UPDR				= #{mbrNo}
+		     , UPD_DT			= now()
+		   <if test="loginSuccess == 'success' ">
+		   	 , LAST_LOGIN_DT = now()
+		   </if>
+		 WHERE LOGIN_ID = #{id} 
+	</update>
+	
+	<insert id="insertLoginHistory" parameterType="map">
+		INSERT INTO T_LOGIN_HIS
+		(
+			LOGIN_ID
+		  , IP_ADDR
+		  , SESN_ID
+		  , REGR
+		  , REG_DT
+		)
+		VALUES
+		(
+			#{id}
+		  , #{ip}
+		  , #{sessionId}
+		  , #{mbrNo}
+		  , now()
+		)	
+	</insert>
+	
+	<select id="selectIdInfo" resultType="String">
+		SELECT LOGIN_ID
+		  FROM T_MBR
+		 WHERE MBR_NM 	= #{mbrNm}
+		   AND CP_NO 	= #{cpNo}
+	</select>
+	
+	<select id="selectIdCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_MBR
+		 WHERE MBR_NM 	= #{mbrNm}
+		   AND CP_NO 	= #{cpNo}
+		   AND LOGIN_ID = #{loginId}
+	</select>
+	
+	<update id="updateEncPwd" parameterType="map">
+		UPDATE T_MBR
+		   SET PWD 				= #{encPwd}
+		     , TMP_PWD_ISSU_DT 	= NOW()
+		 WHERE LOGIN_ID 		= #{loginId}
+		   AND MBR_NM 			= #{mbrNm}
+		   AND CP_NO 			= #{cpNo}
+	</update>
+</mapper>

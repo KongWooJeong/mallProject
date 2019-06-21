@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/*
+* Hanqea System
+* Author: Jongmin Kim
+* update: 2018-05-18
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+html, body {width:100%;height:100%;margin:0;padding:0;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust: none;}
+html{overflow-y:scroll;}
+body{font-size: 14px;}
+h1, h2, h3, h4, h5, h6 {font-size:14px; text-align:left;}
+ul, ol, li {list-style:none;}
+img{vertical-align:middle;}
+img, fieldset, iframe, abbr,acronym{border:none;}
+em, address{font-style:normal;}
+textarea{overflow:auto; resize: none;}
+table{border-collapse:collapse; border-spacing:0;}
+input, select, textarea{font-size:100%; vertical-align:middle;}
+
+/* hr , legend , caption */
+hr, legend, caption{clear:both; display:none; list-style:none; position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0; border:0; background:none; font-size:0px; line-height:0; visibility:hidden;}
+
+/* hyper link */
+a,
+a:link,
+a:visited{text-decoration:none;}
+a:active,
+a:hover{text-decoration:none;}
+
+input[type=text],
+input[type=password],
+input[type=number] {background:#fff; box-sizing:border-box;}
+/* font color of placeholder  */
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder {color:#696969;}
+
+input[type=checkbox],
+input[type=radio] { vertical-align:middle; }
+input[type=submit],
+input[type=button] { -webkit-appearance:none; border-radius:0; cursor:pointer; }
+button {border:0; cursor:pointer; width:auto; overflow:visible; }
+textarea {resize:none;}
+address, em {font-style:normal;}
+
+iframe,object,video,embed { position:relative; max-width:100%; }
+
+/* only firefox */
+@-moz-document url-prefix() {
+    /*input[type=radio] {vertical-align:top;}*/
+}
+/* only webkit */
+@media (-webkit-min-device-pixel-ratio: 0) {
+    /*input[type=radio] {vertical-align: top;}*/
+}
+
+/* html5 ie9 else */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;padding:0;margin:0; }
+
+/* hidden content */
+.blind{overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+
+/* skip navigation*/
+#skipNav a{display:block;position:absolute;left:0;top:-10000px;text-align: center;width:100%;height:30px;z-index: 500;line-height:30px;font-weight:bold;font-size:14px;}
+#skipNav a:hover,#skipNav a:focus,#skipNav a:active{background:#ccc;top:0}
+
+/* clearfix */
+.cf:after{display: block; content: ''; clear: both;}
+
+/* exchange language of input  */
+.ime_en{ime-mode:disabled; -ms-ime-mode:disabled; -webkit-ime-mode:disabled;}
+.ime_kr{ime-mode:active; -ms-ime-mode:active; -webkit-ime-mode:active; }
+
+
+/*** iPhone setting : add this script ***/
+/*
+if(navigator.userAgent.match(/iPhone/)) {
+    $('body').addClass('iPhone');
+}
+if( /iPhone/i.test(navigator.userAgent) ) {
+    document.querySelector('body').className = "iPhone";
+}
+*/
+.iPhone textarea, input{/* iPhone default shadows */ -webkit-appearance: none; -webkit-border-radius: 0;}
+.iPhone select{background-color: #fff; border: 1px solid #d6d6d6;}
+.iPhone input[type=radio]{-webkit-appearance: radio; -webkit-border-radius: 50%;}
+.iPhone input[type='text'],input[type='password'],input[type='submit'],input[type='search'] {border: 1px solid #d5d5d5; border-radius:0;}
+.iPhone input:checked[type='checkbox'] {-webkit-appearance:checkbox;}
+.iPhone button,input[type='button'],input[type='submit'],input[type='reset'],input[type='file'] {-webkit-appearance:button; border-radius:0}
+
+/* text-align */
+.tal{text-align: left !important;}
+.tac{text-align: center !important;}
+.tar{text-align: right !important;}
+
+/* border */
+.bt0{border-top: none !important;}
+.br0{border-right: none !important;}
+.bb0{border-bottom: none !important;}
+.bl0{border-left: none !important;}

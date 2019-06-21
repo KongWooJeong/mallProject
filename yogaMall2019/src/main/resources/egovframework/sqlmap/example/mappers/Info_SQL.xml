@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.info.service.impl.InfoMapper">
+	
+	<update id="updateMbrInfo" parameterType="joinVO">
+		UPDATE T_MBR
+		   SET PWD 				= #{pwd}
+		     , PWD_CHG_DT 		= NOW()	
+		     , TMP_PWD_ISSU_DT  = NULL	     			   	 
+		     , EMAIL 			= #{email}
+		     , CP_NO 			= #{cpNo}
+		     , SMS_RCP_YN 		= #{smsRcpYn}
+		     , ZIPCODE			= #{zipCode}
+		     , ROAD_NM_BSC_ADDR = #{bsAddr}
+		     , ROAD_NM_DTL_ADDR = #{dtAddr}
+		     , EMAIL_RCP_YN 	= #{emailRcpYn}
+		     , UPDR 			= #{mbrNo}
+		     , UPD_DT 			= now()
+		 WHERE LOGIN_ID 		= #{loginId} 
+	</update>
+	
+	<select id="checkPwdCnt" parameterType="egovMap" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_MBR
+		 WHERE LOGIN_ID = #{id}
+		   AND PWD 		= #{encPwd}
+	</select>
+	
+	<select id="cart" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_CART
+		 WHERE MBR_NO = #{mbrNo}
+	</select>
+		
+	<select id="mbrDorm" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_MBR_DORM
+		 WHERE MBR_NO = #{mbrNo}
+	</select>
+	
+	<select id="termsAgr" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_TERMS_AGR
+		 WHERE MBR_NO = #{mbrNo}
+	</select>
+		
+	<select id="ordHis" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM T_ORD_HIS
+		 WHERE MBR_NO = #{mbrNo}
+	</select>	
+		
+	<delete id="deleteCart" parameterType="map">
+		DELETE
+		  FROM T_CART
+		 WHERE MBR_NO = #{mbrNo}
+	</delete>
+		
+	<delete id="deleteMbrDorm" parameterType="map">
+		DELETE
+		  FROM T_MBR_DORM
+		 WHERE MBR_NO = #{mbrNo}
+	</delete>
+		
+	<delete id="deleteOrdHis" parameterType="map">
+		DELETE
+		  FROM T_ORD_HIS
+		 WHERE MBR_NO = #{mbrNo}
+	</delete>
+		
+	<delete id="deleteTermsAgr" parameterType="map">
+		DELETE
+		  FROM T_TERMS_AGR
+		 WHERE MBR_NO = #{mbrNo}
+	</delete>
+		
+	<update id="updateMbrCnd" parameterType="map">
+		UPDATE T_MBR
+		   SET MBR_CND_CD = (SELECT CMM_CD FROM T_CMM_CD WHERE CMM_GRP_CD = 'MB001' AND SORT_SEQ = 3) 
+		 WHERE MBR_NO = #{mbrNo}
+	</update>
+		
+	<insert id="createMbrWthd" parameterType="map">
+		INSERT INTO T_MBR_WTHD
+			(MBR_NO
+		   , WTHD_DE
+		   , WTHD_RSN_CD
+		   , WTHD_RSN
+		   , MBR_NM
+		   , LOGIN_ID
+		   , PWD
+		   , MBR_CND_CD
+		   , MBR_GRD_CD
+		   , CP_NO
+		   , EMAIL
+		   , ZIPCODE
+		   , ROAD_NM_BSC_ADDR
+		   , ROAD_NM_DTL_ADDR
+		   , JOIN_DT
+		   , LAST_ORD_DT
+		   , LAST_LOGIN_DT
+		   , EMAIL_RCP_YN
+		   , SMS_RCP_YN
+		   , MRKT_RCP_AGR_YN_DE
+		   , REGR
+		   , REG_DT
+		   , UPDR
+		   , UPD_DT
+			)
+		 VALUES 
+		 	(#{mbrNo}
+		   , NOW()
+		   , #{wthdRsnCd}
+		   , IFNULL(#{wthdRsn}, (SELECT CMM_CD_NM FROM T_CMM_CD WHERE CMM_CD = #{wthdRsnCd} AND CMM_GRP_CD = 'WT001'))
+		   , (SELECT MBR_NM FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT LOGIN_ID FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT PWD FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT MBR_CND_CD FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT MBR_GRD_CD FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT CP_NO FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT EMAIL FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT ZIPCODE FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT ROAD_NM_BSC_ADDR FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT ROAD_NM_DTL_ADDR FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT JOIN_DT FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT LAST_ORD_DT FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT LAST_LOGIN_DT FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT EMAIL_RCP_YN FROM T_MBR WHERE MBR_NO = #{mbrNo})
+		   , (SELECT SMS_RCP_YN FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		   , (SELECT MRKT_RCP_AGR_YN_DE FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		   , (SELECT REGR FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		   , (SELECT REG_DT FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		   , (SELECT UPDR FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		   , (SELECT UPD_DT FROM T_MBR WHERE MBR_NO = #{mbrNo})		  
+		 	)
+	</insert>
+
+	<select id="selectWthdRsnList" resultType="egovMap">
+		SELECT CMM_CD
+		     , CMM_CD_NM
+		  FROM T_CMM_CD
+		 WHERE CMM_GRP_CD = 'WT001'
+		   AND USE_YN = 'Y'
+	  ORDER BY SORT_SEQ
+	</select>
+	
+</mapper>

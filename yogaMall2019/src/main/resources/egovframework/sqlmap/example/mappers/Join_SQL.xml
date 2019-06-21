@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.join.service.impl.JoinMapper">
+
+	<select id="selectTermsMngList" resultType="egovMap">
+	   <![CDATA[
+	   SELECT  TERMS_MNG_NO
+	         , TERMS_TY_CD
+	         , TERMS_VER
+	         , TERMS_HTML
+	         , ESSN_AGR_YN
+	      FROM T_TERMS_MNG
+	     WHERE DP_YN = 'Y'
+	   AND TERMS_TY_CD = #{_parameter}
+	   AND DP_STRT_DE <= date_format(now(),'%Y%m%d')
+	   AND TERMS_VER >= (SELECT MAX(TERMS_VER)
+	                        FROM T_TERMS_MNG
+	                          WHERE DP_YN = 'Y'
+	                            AND TERMS_TY_CD = #{_parameter}
+	                            AND DP_STRT_DE <= date_format(now(),'%Y%m%d')
+	     )
+	    ]]>
+	</select>
+	
+	<select id="selectDuplicateIdCnt" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM	T_MBR
+		WHERE LOGIN_ID = #{_parameter}
+	</select>
+	
+	<select id="selectEmailDomainList" resultType="egovmap">
+		SELECT CMM_CD
+			 , CMM_CD_NM
+			 , DSC
+			 , SORT_SEQ
+		FROM T_CMM_CD
+		WHERE CMM_GRP_CD = #{_parameter}
+		AND USE_YN = 'Y'
+	</select>
+	<insert id="insertJoinMbr" parameterType="joinVO">
+		<selectKey order="BEFORE" keyProperty="mbrNo" resultType="String">
+		SELECT CONCAT('F', LPAD(IFNULL(REPLACE(MAX(MBR_NO), 'F',''),0) + 1, 9, 0)) AS mbrNo
+			FROM T_MBR;
+		</selectKey>
+		
+		INSERT INTO T_MBR 
+		(
+		   MBR_NO
+		 , LOGIN_ID
+		 , MBR_NM
+		 , PWD
+		 , MBR_CND_CD
+		 , MBR_GRD_CD
+		 , EMAIL
+		 , ZIPCODE
+		 , ROAD_NM_BSC_ADDR
+		 , ROAD_NM_DTL_ADDR
+		 , CP_NO
+		 , JOIN_DT
+		 , EMAIL_RCP_YN
+		 , SMS_RCP_YN
+		 , REGR
+		 , REG_DT
+		 , UPDR
+		 , UPD_DT
+		)
+		VALUES
+		(
+		   #{mbrNo}
+		 , #{loginId}
+		 , #{mbrNm}
+		 , #{pwd}
+		 , (SELECT CMM_CD FROM T_CMM_CD WHERE CMM_GRP_CD = 'MB001' AND SORT_SEQ = 1)
+		 , (SELECT CMM_CD FROM T_CMM_CD WHERE CMM_GRP_CD = 'MB002' AND SORT_SEQ = 1)
+		 , #{email}
+		 , #{zipCode}
+		 , #{bsAddr}
+		 , #{dtAddr}
+		 , #{cpNo}
+		 , now()
+		 , #{emailRcpYn}
+		 , #{smsRcpYn}
+		 , #{mbrNo}
+		 , now()
+		 , #{mbrNo}
+		 , now()
+		)
+	</insert>
+	<insert id="insertTermsAgr" parameterType="egovMap">
+	INSERT   INTO   T_TERMS_AGR
+	(
+	   TERMS_MNG_NO
+	 , MBR_NO
+	 , AGR_YN
+	 , AGR_DE
+	 , REGR
+	 , REG_DT
+	 , UPDR
+	 , UPD_DT
+	)
+	VALUES
+	(
+	   #{termsMngNo}
+	 , #{mbrNo}
+	 <choose>
+	    <when test='essnAgrYn == "Y"'>
+	      , 'Y'
+	    </when>
+	    <otherwise>
+		    <choose>
+			    <when test='agrYn == "Y"'>
+			    , 'Y'
+			    </when>
+			    <otherwise>
+			    , 'N'
+			    </otherwise>
+		    </choose>
+	    </otherwise>
+	 </choose>
+	 , now()
+	 , #{mbrNo}
+	 , now()
+	 , #{mbrNo}
+	 , now()
+	)
+	</insert>
+
+
+	<update id="updateMrktAgr">
+		UPDATE T_MBR
+		   SET MRKT_RCP_AGR_YN_DE = NOW()
+		 WHERE MBR_NO = #{_parameter}
+	</update>
+</mapper>

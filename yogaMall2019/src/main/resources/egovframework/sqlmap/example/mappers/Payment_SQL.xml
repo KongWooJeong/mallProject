@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.payment.service.impl.PaymentMapper">
+
+	<select id="selectUserList" parameterType="String" resultType="EgovMap">
+		SELECT MBR_NO
+		     , MBR_NM
+		     , CP_NO
+		     , EMAIL
+		     , CONCAT(ROAD_NM_BSC_ADDR, " / ", ROAD_NM_DTL_ADDR) AS ADDR
+		     , ZIPCODE
+		 FROM T_MBR
+		 WHERE MBR_NO = #{_parameter}
+	</select>
+	
+	<select id="selectCartList" parameterType="String" resultType="EgovMap">
+		SELECT C.AMT
+		     , C.TOT_PRC
+		     , C.TYPE
+		     , V.VDO_NM
+		     , G.GD_NM
+		     , V.VDO_CD
+		     , G.GD_CD
+		 FROM T_CART C
+		  LEFT JOIN T_VDO V ON C.VDO_CD = V.VDO_CD
+		  LEFT JOIN T_GD G ON C.GD_CD = G.GD_CD
+		 WHERE MBR_NO = #{_parameter}
+	</select>
+	
+	<select id="selectMbrNoList" parameterType="String" resultType="String">
+		SELECT MBR_NO
+		 FROM T_ORD_HIS
+		 WHERE MBR_NO = #{_parameter}
+	</select>
+	
+	<insert id="insertPaymentList" parameterType="map">
+		INSERT INTO T_ORD_HIS
+			  ( MBR_NO
+			  , MBR_NM
+			  , CP_NO		  
+			  , ZIPCODE
+			  , ADDR
+			  , REQ
+			  , ORD_DT
+			  , GD_CD
+			  , VDO_CD
+			  , TOTAL_PRC
+			  )
+		VALUES
+			  ( #{mbrNo}
+			  , #{mbrNm}
+			  , #{cpNo}
+			  , #{zipcode}
+			  , #{addr}
+			  , #{req}
+			  , now()
+			  , "NULL"
+			  , "NULL"
+			  , #{totalPrc})
+	</insert>
+</mapper>

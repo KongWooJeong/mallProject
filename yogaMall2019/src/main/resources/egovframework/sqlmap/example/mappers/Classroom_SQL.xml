@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.classroom.service.impl.ClassroomMapper">	
+	
+	<select id="selectClassList" resultType="egovMap">
+		SELECT V.VDO_NM
+		     , V.VDO_TR
+		     , V.VDO_URL
+		     , I.VDO_IMG_URL
+		  FROM T_ORD_HIS O
+		  JOIN T_VDO V ON O.VDO_CD = V.VDO_CD
+		  JOIN T_VDO_IMG I ON O.VDO_CD = I.VDO_CD
+		 WHERE O.MBR_NO = #{mbrNo}
+	</select>
+	
+</mapper>

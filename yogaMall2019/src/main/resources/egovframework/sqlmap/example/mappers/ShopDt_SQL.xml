@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.shopDt.service.impl.ShopDtMapper">
+
+	<select id="selectGoods" resultType="egovMap">
+		SELECT G.GD_CD
+			 , G.GD_NM
+			 , G.L_CAT_CD
+			 , G.M_CAT_CD
+			 , G.S_CAT_CD
+			 , G.SMR
+			 , P.GD_PRC
+		  FROM T_GD G 
+		  JOIN T_GD_PRC P ON P.GD_CD = G.GD_CD
+		 WHERE G.GD_CD = #{code} 
+	</select> 
+	
+	<select id="selectGoodsImg" resultType="egovMap">
+		SELECT F.FILE_PATH
+			 , F.PHS_FILE_NM
+		  FROM T_GD G
+		  JOIN T_GD_IMG I ON G.GD_CD = I.GD_CD
+		  JOIN T_ATTC_FILE F ON F.FILE_NO = I.GD_IMG_ATT_FILE
+		 WHERE G.GD_CD = #{code} 
+		   AND I.BSC_IMG_YN = 'N' 
+		   AND I.USE_YN = 'Y' 
+		   AND F.DEL_YN = 'N'
+	</select>
+	
+</mapper>
